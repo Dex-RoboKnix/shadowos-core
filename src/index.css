@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+:root {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light;
+  color: #1d1d1f;
+  background-color: #F2F2F7; /* System Gray 6 - softer than white */
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-content: center;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow: hidden;
+  background: #F2F2F7;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+
+/* 
+  Balanced Glass - "Silky" not "Frosty" 
+  Reduces the "White-White" glare.
+*/
+/*
+  Performance-optimized glass: NO backdrop-blur on inactive elements.
+  Only the active window + dock get real blur. Everything else uses
+  opaque backgrounds that mimic the frosted look without GPU composite cost.
+*/
+.glass {
+  background: rgba(245, 245, 247, 0.92); /* More opaque = no blur needed */
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.02),
+    0 2px 4px -1px rgba(0, 0, 0, 0.02),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  /* GPU layer promotion without blur cost */
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Active window gets the real blur - only ONE element at a time */
+.glass-active {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  box-shadow:
+    0 20px 50px -12px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(0,0,0,0.03);
+}
+
+/* Dock keeps blur but at lower intensity */
+.glass-dock {
+  background: rgba(245, 245, 247, 0.7);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.window-shadow {
+  box-shadow: 
+    0 0 0 1px rgba(0,0,0,0.05), /* Border definition */
+    0 25px 50px -12px rgba(0, 0, 0, 0.15); /* Deep shadow */
+}
+
+.dock-shadow {
+  box-shadow: 
+    0 0 0 1px rgba(255,255,255,0.2),
+    0 15px 35px -5px rgba(0, 0, 0, 0.1);
+}
+
+.hero-red { color: #ff3b30; }
+.hero-green { color: #34c759; }
+.hero-amber { color: #ff9f0a; }
+
+/* Scrollbar styling - macOS style */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.window-spring {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.15);
+}
+
+/* Traffic lights */
+.traffic-light {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.5px solid rgba(0,0,0,0.06); /* Subtle rim */
+  transition: all 0.2s;
+}
+.traffic-light:active { filter: brightness(0.9); }
+.traffic-light svg { opacity: 0; }
+.traffic-light:hover svg { opacity: 0.5; }
+
+/* Selection color */
+::selection {
+  background: rgba(0, 122, 255, 0.2);
+  color: #1d1d1f;
+}
