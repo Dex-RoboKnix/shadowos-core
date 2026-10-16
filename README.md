@@ -1,40 +1,28 @@
-# ShadowOS Core
+# ShadowOS
 
-ShadowOS is a local-first desktop environment that runs inside a browser tab.
+**A local-first desktop for working with your Dex projects.** ShadowOS gives you windows, a dock, a menu bar and built-in apps (Finder, Notes, Terminal, Settings and others) over your own local files. It is part of Dex RoboKnix and runs without any agent attached. Pre-1.0 prototype.
 
-It provides a desktop-like workspace for DexRoboKnix: windows, dock, menu bar, built-in apps, local file state, and a future adapter surface for ADE. ShadowOS must remain able to run without ADE.
-
-## Current State
-
-This repo has been seeded from the working React/Vite prototype originally stored under legacy `dexos`/GoWork naming.
-
-The prototype currently includes:
-
-- React/Vite desktop shell.
-- Window manager store.
-- Dock and top bar.
-- Built-in app surfaces for Finder, Browser, Notes, Payload, DexConsole, Brain, Terminal, and Settings.
-- LocalStorage-backed file model.
-- Local sync server prototype.
-
-## Known Gaps
-
-- Persistence API needs path validation, read/list/delete support, and a single source-of-truth decision.
-- Terminal is currently mocked.
-- Built-in apps need a registry rather than scattered hard-coded branches.
-- Test coverage is not yet sufficient.
-- Legacy visual/brand language must be cleaned before public launch.
-- ADE boundary must be documented before agent-control work is coupled to this shell.
-
-## Development
+## Run it
 
 ```powershell
 npm install
-npm run build
 npm run dev
 ```
+Readable: install the dependencies, then start ShadowOS locally and open the address it prints.
 
-## License
+```powershell
+npm run build
+```
+Readable: build a version to serve without the development server.
 
-License TBD pending the DexRoboKnix license matrix.
+## Status
 
+Prototype. The terminal is a mock, and files are kept in the browser's local storage.
+
+## Related
+
+Part of [Dex RoboKnix](https://github.com/Dex-RoboKnix). The DEX838 standard is in [dexspine-core](https://github.com/Dex-RoboKnix/dexspine-core).
+
+## Licence
+
+AGPL-3.0-or-later. See [LICENSE](./LICENSE).
